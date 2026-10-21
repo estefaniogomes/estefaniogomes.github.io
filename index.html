@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Estefânio Farias · Senior QA</title>
+<meta name="description" content="Portfólio de Estefânio Gomes de Farias, Senior QA Analyst em São Paulo/SP. Testes manuais, exploratórios e automação com Playwright.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b1020;--surface:#131a2e;--line:#232c47;--text:#e6e9f2;--muted:#8d97b3;
+  --accent:#7aa2ff;--ok:#5fd99a;--bad:#ff7a86;
+  --sans:"Space Grotesk",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--text);font:400 1rem/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
+section{padding:88px 0;border-top:1px solid var(--line)}
+h2{font-size:clamp(1.7rem,3.6vw,2.3rem);line-height:1.15;letter-spacing:-.02em;margin-bottom:12px;max-width:20ch}
+.sub{color:var(--muted);margin-bottom:40px;max-width:60ch}
+.mono{font-family:var(--mono)}
+
+/* nav */
+header{position:sticky;top:0;z-index:10;background:rgba(11,16,32,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:60px}
+.logo{font-family:var(--mono);font-weight:500;color:var(--accent)}
+nav ul{display:flex;gap:22px;list-style:none;font-size:.92rem;color:var(--muted)}
+nav ul a:hover{color:var(--text)}
+
+/* hero */
+.hero{padding:96px 0 88px;border-top:0}
+.hero .grid{display:grid;grid-template-columns:1.1fr 1fr;gap:48px;align-items:center}
+.role{font-family:var(--mono);font-size:.85rem;color:var(--accent);margin-bottom:18px}
+h1{font-size:clamp(2.3rem,5.6vw,3.8rem);line-height:1.05;letter-spacing:-.03em;margin-bottom:22px}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{color:var(--muted);font-size:1.08rem;max-width:46ch;margin-bottom:30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.btn{padding:11px 20px;border-radius:8px;font-weight:500;border:1px solid var(--line);transition:border-color .2s,background .2s}
+.btn.primary{background:var(--accent);color:#0b1020;border-color:var(--accent)}
+.btn:hover{border-color:var(--accent)}
+.btn.primary:hover{background:#9bb8ff}
+.chips{display:flex;gap:10px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
+.chips span{border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+
+/* terminal */
+.term{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 24px 60px -24px rgba(0,0,0,.6)}
+.term .bar{display:flex;align-items:center;gap:7px;padding:11px 14px;border-bottom:1px solid var(--line);font:500 .75rem var(--mono);color:var(--muted)}
+.term .bar i{width:10px;height:10px;border-radius:50%;background:var(--line)}
+.term pre{padding:18px;font:400 .78rem/1.7 var(--mono);white-space:pre-wrap;color:#c3cbe3;min-height:330px}
+.k{color:#c49bff}.s{color:#9be6c0}.f{color:var(--accent)}.c{color:#5d6788}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.caret{display:inline-block;width:7px;height:1em;background:var(--accent);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* sobre + destaques */
+.about{display:grid;grid-template-columns:1.2fr 1fr;gap:56px}
+.about p+p{margin-top:16px}
+.about p{color:#c3cbe3;max-width:62ch}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;align-self:start}
+.stats div{background:var(--surface);padding:22px 20px}
+.stats b{display:block;font-size:1.9rem;letter-spacing:-.02em;color:var(--accent);line-height:1.1;margin-bottom:6px}
+.stats span{font-size:.85rem;color:var(--muted);line-height:1.4;display:block}
+
+/* timeline */
+.tl{list-style:none;border-left:1px solid var(--line);margin-left:6px}
+.tl li{position:relative;padding:0 0 44px 32px}
+.tl li:last-child{padding-bottom:0}
+.tl li::before{content:"";position:absolute;left:-6px;top:8px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--muted)}
+.tl li.now::before{background:var(--accent);border-color:var(--accent);box-shadow:0 0 0 5px rgba(122,162,255,.18)}
+.when{font:400 .8rem var(--mono);color:var(--muted);margin-bottom:4px}
+.tl h3{font-size:1.2rem;letter-spacing:-.01em}
+.tl h3 small{font-weight:400;color:var(--muted);font-size:.95rem;margin-left:6px}
+.tl ul{margin-top:12px;padding-left:18px;color:#c3cbe3;max-width:70ch}
+.tl ul li{padding:0 0 8px;position:static;border:0}
+.tl ul li::before{display:none}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.card h3{font-size:1rem;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font:400 .8rem var(--mono);color:#c3cbe3;background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:4px 10px}
+
+/* ia */
+.ai{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start}
+.ailist{list-style:none}
+.ailist li{padding:16px 0;border-bottom:1px solid var(--line)}
+.ailist li:first-child{padding-top:0}
+.ailist li:last-child{border:0}
+.ailist b{display:block;font-weight:500;margin-bottom:2px}
+.ailist span{color:var(--muted);font-size:.93rem}
+.term pre.prompt{min-height:0;font-size:.76rem}
+.prompts{display:grid;gap:16px}
+
+/* formação */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.two h3{font-size:1.05rem;margin-bottom:16px;color:var(--accent)}
+.two ul{list-style:none}
+.two li{padding:12px 0;border-bottom:1px solid var(--line)}
+.two li:last-child{border:0}
+.two li small{display:block;color:var(--muted);font-size:.85rem}
+.two a:hover{color:var(--accent)}
+
+/* contato */
+.contact{display:flex;flex-wrap:wrap;gap:16px}
+.contact .item{flex:1 1 260px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px 20px;transition:border-color .2s}
+.contact a.item:hover{border-color:var(--accent)}
+.contact small{display:block;color:var(--muted);font-size:.8rem}
+.contact b{font-weight:500;word-break:break-all}
+button.copy{font:500 .8rem var(--sans);background:transparent;color:var(--accent);border:1px solid var(--line);border-radius:6px;padding:6px 12px;cursor:pointer}
+button.copy:hover{border-color:var(--accent)}
+footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+@media(max-width:860px){
+  .hero .grid,.about,.two,.ai{grid-template-columns:1fr}
+  nav ul{gap:14px;font-size:.8rem;overflow-x:auto}
+  section{padding:64px 0}
+  .logo{display:none}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.caret{animation:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <nav aria-label="Principal">
+      <a class="logo" href="#inicio">estefanio.qa</a>
+      <ul>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#experiencia">Experiência</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#ia">Prompts</a></li>
+        <li><a href="#formacao">Formação</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" id="inicio">
+  <div class="wrap grid">
+    <div>
+      <p class="role">Senior QA Analyst · Testes manuais e exploratórios</p>
+      <h1>Oi, eu sou o Estefânio. Valido o requisito <em>antes de o código existir.</em></h1>
+      <p class="lead">Mais de 10 anos testando sistemas críticos da indústria automotiva, onde um detalhe não validado impacta direto a linha de produção do cliente. Hoje levo essa experiência para a automação com Playwright.</p>
+      <div class="btns">
+        <a class="btn primary" href="#experiencia">Ver experiência</a>
+        <a class="btn" href="#contato">Fale comigo</a>
+      </div>
+      <div class="chips"><span>São Paulo/SP</span><span>Inglês intermediário</span></div>
+    </div>
+    <div class="term" aria-label="Simulação de terminal com resultado de testes">
+      <div class="bar"><i></i><i></i><i></i><span>~/estefanio/portfolio</span></div>
+      <pre id="term" aria-live="off"></pre>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <div class="wrap about">
+    <div>
+      <h2>Qualidade começa no requisito.</h2>
+      <p class="sub">Sobre mim</p>
+      <p>Sou QA sênior e atuo desde a definição, o refinamento e a validação de requisitos funcionais e não funcionais, com foco em Shift Left. Já participei da validação de sistemas para Mercedes-Benz, Renault, Nissan, Scania, Tupy e Gestamp, de controle de impressão de etiquetas a integrações complexas com ERP e SQL.</p>
+      <p>Sou formado em Sistemas de Informação e pós-graduado em Desenvolvimento Full Stack pela PUCRS, o que me ajuda a enxergar a qualidade também pelo lado de quem constrói o sistema. Atualmente estudo automação com Playwright e IA aplicada a testes.</p>
+    </div>
+    <div class="stats">
+      <div><b>10+</b><span>anos em QA para a indústria automotiva</span></div>
+      <div><b>700+</b><span>casos de teste documentados nos últimos 2 anos</span></div>
+      <div><b>8</b><span>releases seguidas sem defeito crítico em produção</span></div>
+      <div><b>15+</b><span>projetos com requisitos funcionais especificados</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="experiencia">
+  <div class="wrap">
+    <h2>Onde eu testei até aqui</h2>
+    <p class="sub">Experiência profissional</p>
+    <ol class="tl">
+      <li class="now">
+        <p class="when">Jan 2026 – atual · São Paulo/SP</p>
+        <h3>Analista de QA Sênior <small>Sintel</small></h3>
+        <ul>
+          <li>Trouxe os testes de API, antes feitos pelos devs no Postman, para dentro do QA: estruturei os cenários com Playwright e geração assistida por IA, reduzindo a execução de cerca de 8 horas para poucos minutos.</li>
+          <li>8 releases seguidas sem defeito crítico em produção, trabalhando junto a um squad de 5 desenvolvedores.</li>
+          <li>Definição, refinamento e validação de requisitos desde as etapas iniciais, com Shift Left, critérios de aceitação e BDD.</li>
+          <li>Apoio à priorização de backlog e à validação de fluxos críticos antes da produção.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="when">Mai 2019 – Jan 2026 · São Paulo/SP</p>
+        <h3>Analista de QA Pleno e Analista Funcional <small>Sintel</small></h3>
+        <ul>
+          <li>Análise, validação e UAT de requisitos para montadoras globais (Mercedes-Benz, Scania, Renault, VW, Honda e Volvo) e fornecedores (Tupy, Lear e Gestamp USA).</li>
+          <li>Requisitos funcionais especificados em mais de 15 projetos nos últimos 2 anos, da definição ao planejamento e à execução dos testes.</li>
+          <li>Projetos de reformulação visual, integração do Controle de Reprogramação com ERP e adaptação de etiquetas de produção.</li>
+          <li>Gestão de defeitos, priorização de backlog e visitas a clientes para acompanhar o uso real.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="when">Out 2015 – Mai 2019 · São Paulo e região</p>
+        <h3>Analista de Testes Júnior <small>Sintel</small></h3>
+        <ul>
+          <li>Planejamento de testes em sistemas Web, Desktop e EDI, com massas de dados para homologação e documentação funcional.</li>
+          <li>Apoio à integração da Sys Evolution à Sintel. Atuação com Scrum, Kanban e RUP.</li>
+        </ul>
+      </li>
+      <li>
+        <p class="when">Out 2013 – Set 2015 · São Paulo/SP</p>
+        <h3>Analista de Teste (estágio) <small>Sys Evolution Licitações · LicitaSys</small></h3>
+        <ul>
+          <li>Especificação e execução de casos de teste, documentação e testes exploratórios.</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Minha caixa de ferramentas</h2>
+    <p class="sub">Skills e ferramentas</p>
+    <div class="skills">
+      <div class="card"><h3>Especialidades</h3><div class="tags"><span>Testes manuais</span><span>Exploratórios</span><span>Automação</span><span>Engenharia de requisitos</span><span>Shift Left</span><span>BDD</span></div></div>
+      <div class="card"><h3>Automação e APIs</h3><div class="tags"><span>Playwright</span><span>Cypress</span><span>Postman</span><span>Node.js</span></div></div>
+      <div class="card"><h3>Gestão e testes</h3><div class="tags"><span>Jira</span><span>Azure Test Plan</span><span>Scrum</span><span>Kanban</span></div></div>
+      <div class="card"><h3>Dados e integrações</h3><div class="tags"><span>SQL</span><span>Postgres</span><span>Supabase</span><span>Integrações ERP</span></div></div>
+      <div class="card"><h3>Linguagens e código</h3><div class="tags"><span>JavaScript</span><span>TypeScript</span><span>Git</span><span>GitHub</span></div></div>
+      <div class="card"><h3>IA no fluxo de QA</h3><div class="tags"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Cursor</span></div></div>
+      <div class="card"><h3>Idiomas</h3><div class="tags"><span>Português · nativo</span><span>Inglês · intermediário</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="ia">
+  <div class="wrap">
+    <h2>IA como parceira de QA</h2>
+    <p class="sub">Engenharia de Prompt. Prompts com contexto, tarefa, formato e restrições bem definidos, para respostas que dá para usar de verdade.</p>
+    <div class="ai">
+      <ul class="ailist">
+        <li><b>Cenários a partir de critérios de aceite</b><span>Transformo requisitos em casos de teste positivos, negativos e de borda.</span></li>
+        <li><b>Testes de API com Playwright</b><span>Geração assistida de cenários que reduziu a execução de cerca de 8 horas para poucos minutos.</span></li>
+        <li><b>Rascunho e revisão de scripts</b><span>Apoio na escrita de testes Playwright e na depuração de seletores e esperas.</span></li>
+        <li><b>Documentação de bugs</b><span>Relatórios objetivos, com passos para reproduzir, evidências e impacto.</span></li>
+      </ul>
+      <div class="prompts">
+        <div class="term">
+          <div class="bar"><span>prompt 1 · cenários de teste</span></div>
+          <pre class="prompt">Contexto: Sou QA e vou validar a API de cadastro de um sistema.
+Tarefa: Gere casos de teste a partir dos critérios de aceite abaixo.
+Formato: Tabela com ID, cenário, pré-condição, passos e resultado esperado.
+Restrições: Inclua casos negativos e de borda; não invente regras que não estejam nos critérios.
+
+Critérios:
+- E-mail deve ser único
+- Senha com no mínimo 8 caracteres</pre>
+        </div>
+        <div class="term">
+          <div class="bar"><span>prompt 2 · testes de API com Playwright</span></div>
+          <pre class="prompt">Contexto: Tenho uma coleção de requests no Postman de um endpoint de cadastro.
+Tarefa: Converta os cenários em testes de API com Playwright (TypeScript).
+Formato: Um arquivo .spec.ts com test.describe, um test por cenário e asserts de status e corpo.
+Restrições: Não use dados reais; mantenha a URL base e o token em variáveis de ambiente.</pre>
+        </div>
+        <div class="term">
+          <div class="bar"><span>prompt 3 · relatório de bug</span></div>
+          <pre class="prompt">Contexto: Encontrei uma falha durante a validação de uma release.
+Tarefa: Escreva um relatório de bug a partir das anotações abaixo.
+Formato: Título, ambiente, passos para reproduzir, resultado atual, resultado esperado, evidências e impacto.
+Restrições: Linguagem objetiva; não suponha causa raiz que eu não tenha informado.</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formacao">
+  <div class="wrap two">
+    <div>
+      <h2>Formação</h2>
+      <ul>
+        <li>Pós-graduação em Desenvolvimento Full Stack<small>PUCRS · 2025</small></li>
+        <li>Bacharelado em Sistemas de Informação<small>Universidade Anhanguera São Paulo · 2011–2015</small></li>
+      </ul>
+    </div>
+    <div>
+      <h2>Cursos e certificações</h2>
+      <ul>
+        <li>Automação de Testes com Playwright + IA<small>UNIFATEC</small></li>
+        <li><a href="https://cursos.alura.com.br/course/quality-assurance-plano-testes-gestao-bugs" target="_blank" rel="noopener">Quality Assurance: plano de testes e gestão de bugs</a><small>Alura</small></li>
+        <li><a href="https://cursos.alura.com.br/course/cypress-automatizando-testes-e2e" target="_blank" rel="noopener">Cypress: automatizando testes E2E</a><small>Alura</small></li>
+        <li>Gestão Ágil de Projetos com SCRUM<small>Alura</small></li>
+        <li>Git e GitHub: compartilhando e colaborando em projetos<small>Alura</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <h2>Vamos testar algo juntos?</h2>
+    <p class="sub">Aberto a novas oportunidades e conversas sobre qualidade de software.</p>
+    <div class="contact">
+      <div class="item"><div><small>E-mail</small><b id="mail">estefanio.gomes@gmail.com</b></div><button class="copy" id="copy" type="button">Copiar</button></div>
+      <a class="item" href="https://www.linkedin.com/in/estef%C3%A2nio-farias-13644a70" target="_blank" rel="noopener"><div><small>LinkedIn</small><b>in/estefânio-farias</b></div></a>
+      <a class="item" href="https://github.com/estefaniogomes" target="_blank" rel="noopener"><div><small>GitHub</small><b>estefaniogomes</b></div></a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Estefânio Gomes de Farias · São Paulo/SP</span><span class="mono">feito com cuidado e testado ✓</span></div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById("copy");
+  btn.addEventListener("click",function(){
+    var t=document.getElementById("mail").textContent;
+    var done=function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar"},1800)};
+    try{navigator.clipboard.writeText(t).then(done)}catch(e){}
+  });
+
+  var html=
+'<span class="c">// estefanio.spec.ts</span>\n'+
+'<span class="k">test</span>(<span class="s">\'apresentação\'</span>, <span class="k">async</span> () => {\n'+
+'  <span class="f">expect</span>(estefanio.cidade).<span class="f">toBe</span>(<span class="s">"SP"</span>);\n'+
+'  <span class="f">expect</span>(estefanio.anosDeQA).<span class="f">toBeGreaterThan</span>(10);\n'+
+'});\n\n'+
+'<span class="c">$</span> npx playwright test estefanio.spec.ts\n\n'+
+'  <span class="ok">✓</span> valida o requisito antes do código existir\n'+
+'  <span class="ok">✓</span> 8 releases seguidas sem defeito crítico\n'+
+'  <span class="ok">✓</span> API de 8 horas para poucos minutos\n'+
+'  <span class="ok">✓</span> lê o critério de aceite até o fim\n'+
+'  <span class="bad">✘</span> aprova sem validar\n'+
+'      <span class="c">esperado: true · recebido: nunca</span>\n\n'+
+'  <span class="ok">4 passed</span> <span class="bad">1 failed</span> <span class="c">(e tudo bem)</span><span class="caret"></span>';
+  var el=document.getElementById("term");
+  el.innerHTML=html;
+})();
+</script>
+</body>
+</html>
